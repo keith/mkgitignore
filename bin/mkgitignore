@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require 'mkgitignore'
+require 'optparse'
+require 'colored'
+
+if ARGV.count > 0
+  op = OptionParser.new do |opt|
+    opt.banner = "Usage: gitignore [optional template names]"
+    opt.seperator ""
+    opt.separator "   EX: gitignore objective-c osx"
+  end
+
+  begin
+    op.parse ARGV
+  rescue => e
+    puts "Error parsing arguments #{ e.response }".red
+    exit
+  end
+else
+  Mkgitignore.displayTemplates
+end
