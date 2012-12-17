@@ -45,13 +45,13 @@ module Mkgitignore
     end
   end
 
-  def self.searchTemplatesForNames(names)
+  def self.searchForTemplatesWithNames(names)
     result = Array.new
     templates = Mkgitignore::templatesFromURL(Mkgitignore::GITIGNORE_URL)
     templates.each do |t|
-      name = File.basename(t["name"], ".*")
+      file_name = File.basename(t["name"], ".*")
       names.each do |name|
-        if name.casecmp(name) == 0
+        if name.casecmp(file_name) == 0
           result << t
         end
       end
@@ -74,6 +74,67 @@ module Mkgitignore
     end
 
     "####### #{ File.basename(name, ".*") } #######\n#{ response.to_str.gsub(/\r/, "") }\n\n"
+  end
+
+  def self.printAllTemplates
+    templates = Mkgitignore::templatesFromURL(Mkgitignore::GITIGNORE_URL)
+    templates.each_with_index do |template, index|
+      file_name = File.basename(template["name"], ".*")
+      puts "#{ index + 1}: #{ file_name }"
+    end
+
+    selectionArray = Array.new
+
+    begin
+      print("Enter a number to download (0 to stop): ")
+      selection = gets.to_i - 1
+      if selectionArray.include? selection
+        puts "#{ selection + 1 } was already entered.".red
+      else
+        if selection > 0 && selection < responseJSON.count
+          selectionArray << selection
+        else
+          if selection > 0
+            puts "#{ selection + 1 } is invalid".red
+          end
+        end
+      end
+    end while selection > 0
+
+    if selectionArray.count < 1
+      puts "No gitignores selected".red
+      exit
+    end
+
+    gitignore = String.new
+    selectionArray.each { |t| gitignore += Mkgitignore::downloadFromURL(t["url"], t["name"]) }
+
+    gitignore
+  end
+
+  def self.writeGitignore(gitignore, nobackup)
+    if !nobackup && File.exists?(Mkgitignore::GITIGNORE_FILE_NAME)
+      FileUtils.mv Mkgitignore::GITIGNORE_FILE_NAME, Mkgitignore::BACKUP_FILE_NAME, :force => true
+      if File.exists?(Mkgitignore::GITIGNORE_FILE_NAME)
+        puts "Failed to backup #{ Mkgitignore::GITIGNORE_FILE_NAME }".red
+      else
+        puts "Backed up to #{ Mkgitignore::BACKUP_FILE_NAME }".green
+      end
+    end
+
+    if File.exists?(Mkgitignore::GITIGNORE_FILE_NAME)
+      FileUtils.rm(Mkgitignore::GITIGNORE_FILE_NAME, :force => true)
+      if File.exists?(Mkgitignore::GITIGNORE_FILE_NAME)
+        puts "Failed to remove old #{ Mkgitignore::GITIGNORE_FILE_NAME }".red
+      else
+        puts "Removed old #{ Mkgitignore::GITIGNORE_FILE_NAME }".green
+      end
+    end
+
+    file = File.open(Mkgitignore::GITIGNORE_FILE_NAME, "w")
+    file << gitignore
+    file.close()
+    puts "Finished writing #{ Mkgitignore::GITIGNORE_FILE_NAME }".green
   end
 end
 
