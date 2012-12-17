@@ -6,12 +6,13 @@ require 'mkgitignore/version'
 Gem::Specification.new do |gem|
   gem.name          = "mkgitignore"
   gem.version       = Mkgitignore::VERSION
-  gem.authors       = ["Keith Smiley"]
-  gem.email         = ["keithbsmiley@gmail.com"]
+  gem.authors       = Mkgitignore::AUTHOR
+  gem.email         = Mkgitignore::EMAIL
   gem.description   = "Write a gem description}"
   gem.summary       = "Write a gem summary"
   gem.homepage      = "http://fff.com"
 
+  gem.add_runtime_dependency "commander", "~> 4.1.3"
   gem.add_runtime_dependency "rest-client", "~> 1.6.6"
   gem.add_runtime_dependency "colored", "~> 1.2"
 

@@ -1,22 +1,18 @@
 #!/usr/bin/env ruby
 
+require 'commander/import'
 require 'mkgitignore'
-require 'optparse'
-require 'colored'
 
-if ARGV.count > 0
-  op = OptionParser.new do |opt|
-    opt.banner = "Usage: gitignore [optional template names]"
-    opt.seperator ""
-    opt.separator "   EX: gitignore objective-c osx"
-  end
+# Thanks @mattt
+HighLine.track_eof = false # Fix for built-in Ruby
+Signal.trap("INT") {} # Suppress backtrace when exiting command
 
-  begin
-    op.parse ARGV
-  rescue => e
-    puts "Error parsing arguments #{ e.response }".red
-    exit
-  end
-else
-  Mkgitignore.displayTemplates
-end
+program :version, Mkgitignore::VERSION
+program :description, 'Create Gitignore files from the Github templates repo' 
+
+program :help, 'Author', Mkgitignore::AUTHOR
+program :help, 'Website', Mkgitignore::EMAIL
+program :help_formatter, :compact
+
+default_command :help
+
