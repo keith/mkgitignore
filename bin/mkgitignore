@@ -11,7 +11,7 @@ program :version, Mkgitignore::VERSION
 program :description, 'Create Gitignore files from the Github templates repo' 
 
 program :help, 'Author', Mkgitignore::AUTHOR
-program :help, 'Website', Mkgitignore::EMAIL
+program :help, 'Website', Mkgitignore::WEBSITE
 program :help_formatter, :compact
 
 default_command :help
