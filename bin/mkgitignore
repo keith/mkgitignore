@@ -5,7 +5,7 @@ require 'mkgitignore'
 
 # Thanks @mattt
 HighLine.track_eof = false # Fix for built-in Ruby
-Signal.trap("INT") {} # Suppress backtrace when exiting command
+Signal.trap("INT") { exit } # Suppress backtrace when exiting command
 
 program :version, Mkgitignore::VERSION
 program :description, 'Create Gitignore files from the Github templates repo' 

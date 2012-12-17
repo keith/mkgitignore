@@ -87,11 +87,11 @@ module Mkgitignore
 
     begin
       print("Enter a number to download (0 to stop): ")
-      selection = gets.to_i - 1
+      selection = $stdin.gets.to_i - 1
       if selectionArray.include? selection
         puts "#{ selection + 1 } was already entered.".red
       else
-        if selection > 0 && selection < responseJSON.count
+        if selection > 0 && selection < templates.count
           selectionArray << selection
         else
           if selection > 0
@@ -107,7 +107,8 @@ module Mkgitignore
     end
 
     gitignore = String.new
-    selectionArray.each { |t| gitignore += Mkgitignore::downloadFromURL(t["url"], t["name"]) }
+    # selectionArray.each { |t| gitignore += Mkgitignore::downloadFromURL(t["url"], t["name"]) }
+    selectionArray.each { |x| gitignore += Mkgitignore::downloadFromURL(templates[x]["url"], templates[x]["name"]) }
 
     gitignore
   end
@@ -142,4 +143,5 @@ end
 require 'mkgitignore/commands/list'
 require 'mkgitignore/commands/search'
 require 'mkgitignore/commands/build'
+require 'mkgitignore/commands/listbuild'
 

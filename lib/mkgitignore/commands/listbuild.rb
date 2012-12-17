@@ -6,7 +6,7 @@ command :listbuild do |c|
   c.option '--no-backup', 'Doesn\'t back up previous gitignore to backup.gitignore'
   c.option '--dry-run', 'Prints out the would be contents of the gitignore'
   c.action do |args, options|
-    gitginore = Mkgitignore::displayAllTemplates
+    gitignore = Mkgitignore::printAllTemplates
 
     if options.dry_run
       puts gitignore
@@ -15,3 +15,4 @@ command :listbuild do |c|
     end
   end
 end
+

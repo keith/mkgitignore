@@ -4,7 +4,7 @@ command :search do |c|
   c.description = 'Searches all the templates in the Github gitignore templates repository'
   c.example 'Search for a specific template', 'mkgitignore search objective-c'
   c.action do |args, options|
-    templates = MkGitignore::searchForTemplatesWithNames(args)
+    templates = Mkgitignore::searchForTemplatesWithNames(args)
     if templates.count > 0
       templates.each { |t| puts File.basename(t["name"], ".*") }
     else

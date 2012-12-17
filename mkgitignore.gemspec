@@ -8,12 +8,12 @@ Gem::Specification.new do |gem|
   gem.version       = Mkgitignore::VERSION
   gem.authors       = Mkgitignore::AUTHOR
   gem.email         = Mkgitignore::EMAIL
-  gem.description   = "Write a gem description}"
-  gem.summary       = "Write a gem summary"
-  gem.homepage      = "http://fff.com"
+  gem.description   = "Easily creates gitignores from the Github gitignore templates repository"
+  gem.summary       = "Create gitignores from Github's templates"
+  gem.homepage      = "https://github.com/Keithbsmiley/mkgitignore"
 
   gem.add_runtime_dependency "commander", "~> 4.1.3"
-  gem.add_runtime_dependency "rest-client", "~> 1.6.6"
+  gem.add_runtime_dependency "rest-client", "~> 1.6.7"
   gem.add_runtime_dependency "colored", "~> 1.2"
 
   gem.files         = `git ls-files`.split($/)
