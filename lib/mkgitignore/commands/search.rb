@@ -3,7 +3,6 @@ command :search do |c|
   c.summary = 'Search avaliable gitignore templates'
   c.description = 'Searches all the templates in the Github gitignore templates repository'
   c.example 'Search for a specific template', 'mkgitignore search objective-c'
-#  c.option '--some-switch', 'Some switch that does something'
   c.action do |args, options|
     result = Array.new
     templates = Mkgitignore::templatesFromURL(Mkgitignore::GITIGNORE_URL)
@@ -20,5 +19,6 @@ command :search do |c|
       puts result
     else
       puts "No matching templates found".red
+    end
   end
 end

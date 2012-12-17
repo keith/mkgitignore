@@ -48,4 +48,5 @@ end
 
 require 'mkgitignore/commands/list'
 require 'mkgitignore/commands/search'
+require 'mkgitignore/commands/build'
 
