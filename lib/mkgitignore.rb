@@ -24,6 +24,7 @@ module Mkgitignore
         json = JSON.parse(response.body)
       rescue JSON::ParserError => e
         puts "Failed to decode response #{ e.response }".red
+        exit
       end
 
       json.each do |file|
@@ -42,6 +43,37 @@ module Mkgitignore
     else
       puts "Github returned an error #{ response }".red
     end
+  end
+
+  def self.searchTemplatesForNames(names)
+    result = Array.new
+    templates = Mkgitignore::templatesFromURL(Mkgitignore::GITIGNORE_URL)
+    templates.each do |t|
+      name = File.basename(t["name"], ".*")
+      names.each do |name|
+        if name.casecmp(name) == 0
+          result << t
+        end
+      end
+    end
+
+    result
+  end
+
+  def self.downloadFromURL(url, name)
+    begin
+      response = RestClient.get(url, {:accept => "application/vnd.github.VERSION.raw"})
+    rescue => e
+      begin
+        response = JSON.parse(e.response)
+        puts "Error: #{ response["message"] }".red
+      rescue JSON::ParserError => e
+        puts "Failed to connect to Github and to parse error. Error: #{ e.response }".red
+      end
+      exit
+    end
+
+    "####### #{ File.basename(name, ".*") } #######\n#{ response.to_str.gsub(/\r/, "") }\n\n"
   end
 end
 
