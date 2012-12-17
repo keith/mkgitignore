@@ -1,26 +1,20 @@
 # Mkgitignore
 
-TODO: Write a gem description
+Create gitignores from [Github's templates](https://github.com/github/gitignore/) from the command line.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'mkgitignore'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install mkgitignore
+```
+[sudo] gem install mkgitignore
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+Run `mkgitignore` from the command line to see the different commands
 
-## Contributing
+EX: `mkgitignore build osx objective-c` combines the OSX and Objective-C templates into a the `.gitignore` in the current directory
+
+### Contributing
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
