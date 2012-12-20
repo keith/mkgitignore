@@ -114,7 +114,7 @@ module Mkgitignore
   end
 
   def self.writeGitignore(gitignore, nobackup)
-    if !nobackup && File.exists?(Mkgitignore::GITIGNORE_FILE_NAME)
+    if nobackup.nil? && File.exists?(Mkgitignore::GITIGNORE_FILE_NAME)
       FileUtils.mv Mkgitignore::GITIGNORE_FILE_NAME, Mkgitignore::BACKUP_FILE_NAME, :force => true
       if File.exists?(Mkgitignore::GITIGNORE_FILE_NAME)
         puts "Failed to backup #{ Mkgitignore::GITIGNORE_FILE_NAME }".red
