@@ -12,9 +12,9 @@ Gem::Specification.new do |gem|
   gem.summary       = "Create gitignores from Github's templates"
   gem.homepage      = "https://github.com/Keithbsmiley/mkgitignore"
 
-  gem.add_runtime_dependency "commander", "~> 4.1.3"
-  gem.add_runtime_dependency "rest-client", "~> 1.6.7"
-  gem.add_runtime_dependency "colored", "~> 1.2"
+  gem.add_runtime_dependency "commander", "4.1.3"
+  gem.add_runtime_dependency "rest-client", "1.6.7"
+  gem.add_runtime_dependency "colored", "1.2"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

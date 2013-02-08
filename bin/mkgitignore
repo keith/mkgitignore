@@ -15,4 +15,3 @@ program :help, 'Website', Mkgitignore::WEBSITE
 program :help_formatter, :compact
 
 default_command :help
-

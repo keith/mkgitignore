@@ -1,7 +1,7 @@
 require 'mkgitignore/version'
 require 'rest-client'
 require 'colored'
-require 'JSON'
+require 'json'
 
 module Mkgitignore
   def self.templatesFromURL(url)
@@ -144,4 +144,3 @@ require 'mkgitignore/commands/list'
 require 'mkgitignore/commands/search'
 require 'mkgitignore/commands/build'
 require 'mkgitignore/commands/listbuild'
-
