@@ -143,6 +143,7 @@ module Mkgitignore
       File.open(Mkgitignore::GITIGNORE_FILE_NAME, 'a') do |file|
         file << gitignore
       end
+      puts "Finished appending #{ Mkgitignore::GITIGNORE_FILE_NAME }".green
     else
       writeGitignore(gitignore, true)
     end
