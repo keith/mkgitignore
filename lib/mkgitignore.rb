@@ -137,6 +137,16 @@ module Mkgitignore
     file.close()
     puts "Finished writing #{ Mkgitignore::GITIGNORE_FILE_NAME }".green
   end
+
+  def self.appendGitignore(gitignore)
+    if File.exists?(Mkgitignore::GITIGNORE_FILE_NAME)
+      File.open(Mkgitignore::GITIGNORE_FILE_NAME, 'a') do |file|
+        file << gitignore
+      end
+    else
+      writeGitignore(gitignore, true)
+    end
+  end
 end
 
 
