@@ -16,7 +16,7 @@ command :append do |c|
     templates.each { |t| gitignore += Mkgitignore::downloadFromURL(t["url"], t["name"]) }
 
     if options.dry_run
-      puts gitignore
+      puts "Would append:\n\n #{ gitignore }"
     else
       Mkgitignore::appendGitignore(gitignore)
     end
