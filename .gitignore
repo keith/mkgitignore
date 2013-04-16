@@ -12,11 +12,11 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
+Gemfile.lock
+!.rspec
 
 # YARD artifacts
 .yardoc
 _yardoc
 doc/
-
-Gemfile.lock
 
