@@ -154,3 +154,5 @@ require 'mkgitignore/commands/list'
 require 'mkgitignore/commands/search'
 require 'mkgitignore/commands/build'
 require 'mkgitignore/commands/listbuild'
+require 'mkgitignore/commands/append'
+
