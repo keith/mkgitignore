@@ -57,6 +57,12 @@ module Mkgitignore
       end
     end
 
+    names.each do |name|
+      if !result.any? { |t| File.basename(t["name"], '.*').casecmp(name) == 0 }
+        puts "No template named #{ name }".red
+      end
+    end
+
     result
   end
 
@@ -114,6 +120,11 @@ module Mkgitignore
   end
 
   def self.writeGitignore(gitignore, nobackup)
+    if gitignore.empty?
+      puts "Gitignore is empty".red
+      exit
+    end
+
     if nobackup.nil? && File.exists?(Mkgitignore::GITIGNORE_FILE_NAME)
       FileUtils.mv Mkgitignore::GITIGNORE_FILE_NAME, Mkgitignore::BACKUP_FILE_NAME, :force => true
       if File.exists?(Mkgitignore::GITIGNORE_FILE_NAME)
@@ -139,6 +150,11 @@ module Mkgitignore
   end
 
   def self.appendGitignore(gitignore)
+    if gitignore.empty?
+      puts "Nothing to append".red
+      exit
+    end
+
     if File.exists?(Mkgitignore::GITIGNORE_FILE_NAME)
       File.open(Mkgitignore::GITIGNORE_FILE_NAME, 'a') do |file|
         file << gitignore
