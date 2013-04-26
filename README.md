@@ -2,6 +2,8 @@
 
 Create gitignores from [Github's templates](https://github.com/github/gitignore/) from the command line.
 
+[![Dependency Status](https://gemnasium.com/Keithbsmiley/mkgitignore.png)](https://gemnasium.com/Keithbsmiley/mkgitignore)
+
 ## Installation
 
 ```
